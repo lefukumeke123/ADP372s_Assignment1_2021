@@ -1,89 +1,58 @@
 package za.ac.cput.ADP372s_Assignment1_2021;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+
 import static org.junit.jupiter.api.Assertions.*;
-
-/**
- * Student Name: MARVIN LAMOHR
- * Student Number: 214273830
- */
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+import java.util.concurrent.TimeUnit;
+import static org.junit.jupiter.api.Assertions.*;
 class TDDTest {
 
-    private TDDTest car1;
-    private TDDTest car2;
-    private TDDTest car3;
-    private TDDTest car4;
 
-    private TDDTest  shop1;
-    private TDDTest  shop2;
-    private TDDTest  shop3;
+        private TDD person1;
+        private TDD person2;
+        private int Monday;
+        private int Friday;
+
+        @BeforeEach
+        void setUp() {
+
+            person1 = new TDD();
+            person2 = new TDD();
+            Monday = 10;
+            Friday = 10;
+        }
+
+        @Test
+        void testObjectIdentity() {
+            assertSame(person1, person2);
+        }
+
+        @Test
+        void testObjectEquality() {
+            assertEquals(person1, person2);
+        }
+
+        @Test
+        void failingTest() {
+            fail("This test will fail");
+            assertEquals(Monday, Friday);
+        }
 
 
-    @BeforeEach
-    void setUp(){
+        @Test
+        @Timeout(6)
+        public void timeoutTest() throws InterruptedException {
+            TimeUnit.SECONDS.sleep(5);
+            System.out.println("Test passed within the given time");
+        }
 
-        car1 = new TDDTest ();
-        car2 = new TDDTest ();
-        car3 = new TDDTest ();
-        car4 = car2;
-
-
-        shop1 = new TDDTest ();
-        shop2 = shop3;
-
+        @Disabled("This option is disabled")
+        @Test
+        void disablingTest() {
+            assertTrue(2 > 0);
+        }
     }
-
-
-    /* Testing For Object Equality */
-
-    @Test
-    void objectEquality(){
-
-        assertEquals(car1,car1);
-    }
-
-
-    /* Testing For Object Identity */
-
-    @Test
-    void objectIdentity(){
-
-        assertSame(car2,car4);
-
-    }
-
-
-    /* Making Sure The Test Fails */
-
-    @Test
-    void failingTest(){
-
-        fail("Load-Shedding...Shutting-Down...");
-        assertNotSame(shop1,car1);
-
-    }
-
-
-    /* Running Timeouts */
-
-    @Test
-    @Timeout(3)
-    void timeOuts() throws InterruptedException {
-
-        Thread.sleep(300);
-        System.out.println("Test will pass soon... Please be patient...");
-    }
-
-
-    /* Initiating A Disabling Test */
-
-    @Test
-    @Disabled
-    void disablingTest() throws InterruptedException{
-
-        assertEquals(shop2,shop3);
-        System.out.println("Exit");
-    }
-
-}
