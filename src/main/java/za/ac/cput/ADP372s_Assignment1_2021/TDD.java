@@ -1,8 +1,8 @@
 package za.ac.cput.ADP372s_Assignment1_2021;
 
 /**
- * Student Name:
- * Student Number:
+ * Student Name: MARVIN LAMOHR
+ * Student Number: 214273830
  */
 
 public class TDD {
